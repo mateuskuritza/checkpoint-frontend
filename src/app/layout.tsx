@@ -1,5 +1,6 @@
 import { Montserrat } from 'next/font/google';
 import Script from 'next/script';
+import { Toaster } from 'react-hot-toast';
 import './globals.css';
 
 const montserrat = Montserrat({ subsets: ['latin'] });
@@ -21,7 +22,10 @@ const jsonLd = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang='pt-br'>
-            <body className={montserrat.className}>{children}</body>
+            <body className={montserrat.className + ' bg-charcoal w-screen h-screen'}>
+                <Toaster />
+                {children}
+            </body>
             <Script
                 id='json-ld'
                 type='application/ld+json'
