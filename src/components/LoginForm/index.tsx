@@ -20,8 +20,9 @@ export function LoginForm() {
 
         usersAPI
             .login(token)
-            .then(() => {
-                // TODO: redirect to dashboard
+            .then(({ jwt }) => {
+                document.cookie = `jwt=${jwt}; path=/;`;
+                window.location.href = '/workhours';
             })
             .catch((error) => {
                 console.log({ error });

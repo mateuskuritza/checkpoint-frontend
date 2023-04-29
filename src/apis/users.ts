@@ -8,13 +8,27 @@ class UsersAPI {
 
     constructor() {}
 
-    async login(token: string) {
+    async login(token: string): Promise<{ jwt: string }> {
         const res = await fetch(`${this.apiUrl}/authenticate`, {
             ...this.basicConfig,
             method: 'POST',
             body: JSON.stringify({ token }),
         });
-        return res.json();
+        const { jwt } = await res.json();
+        return { jwt };
+    }
+
+    async is_logged(jwt: string): Promise<boolean> {
+        try {
+            await fetch(`${this.apiUrl}/is_logged`, {
+                ...this.basicConfig,
+                method: 'POST',
+                body: JSON.stringify({ jwt }),
+            });
+            return true;
+        } catch {
+            return false;
+        }
     }
 }
 
