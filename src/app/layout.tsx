@@ -1,8 +1,8 @@
-import { Inter } from 'next/font/google';
+import { Montserrat } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const montserrat = Montserrat({ subsets: ['latin'] });
 
 export const metadata = {
     title: 'Controle de Ponto',
@@ -21,7 +21,7 @@ const jsonLd = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang='pt-br'>
-            <body className={inter.className}>{children}</body>
+            <body className={montserrat.className}>{children}</body>
             <Script
                 id='json-ld'
                 type='application/ld+json'
