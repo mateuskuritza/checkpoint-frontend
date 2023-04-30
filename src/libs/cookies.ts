@@ -6,7 +6,10 @@ export class CookiesUtils {
     }
 
     static get(name: string): string | null {
-        const cookie = document.cookie.split(';').find((cookie) => cookie.startsWith(name));
+        const cookie = document.cookie
+            .split('; ')
+            .find((cookie) => cookie.startsWith(name))
+            ?.split('=')[1];
         if (!cookie) return null;
         return cookie.split('=')[1];
     }
