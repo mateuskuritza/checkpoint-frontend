@@ -1,3 +1,5 @@
+import { CookiesUtils } from '@/libs/cookies';
+
 class UsersAPI {
     private apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/users`;
     private basicConfig = {
@@ -15,7 +17,12 @@ class UsersAPI {
             body: JSON.stringify({ token }),
         });
         const { jwt } = await res.json();
+        CookiesUtils.set('jwt', jwt, { path: '/' });
         return { jwt };
+    }
+
+    logout(): void {
+        CookiesUtils.remove('jwt');
     }
 
     async is_logged(jwt: string): Promise<boolean> {

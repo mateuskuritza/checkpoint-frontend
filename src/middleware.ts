@@ -1,6 +1,6 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
-import { usersAPI } from './apis/users';
+import { usersAPI } from './services/users';
 
 export async function middleware(request: NextRequest) {
     if (request.nextUrl.pathname === '/') {

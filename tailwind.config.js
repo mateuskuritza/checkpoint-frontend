@@ -9,6 +9,7 @@ module.exports = {
             midnight: '#1E2733',
             charcoal: '#151F2B',
             orange: '#FE8A00',
+            red: '#FF0000',
         },
     },
     plugins: [],

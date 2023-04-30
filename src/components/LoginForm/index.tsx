@@ -1,6 +1,6 @@
 'use client';
 
-import { usersAPI } from '@/apis/users';
+import { usersAPI } from '@/services/users';
 import { FormEvent, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { Button } from '../Button';
@@ -20,8 +20,7 @@ export function LoginForm() {
 
         usersAPI
             .login(token)
-            .then(({ jwt }) => {
-                document.cookie = `jwt=${jwt}; path=/;`;
+            .then(() => {
                 window.location.href = '/workhours';
             })
             .catch((error) => {
