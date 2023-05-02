@@ -15,7 +15,7 @@ const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: metadata.title,
-    url: 'https://www.exemplo.com.br', // TODO: change this after deploy
+    url: 'https://checkpoint-frontend-one.vercel.app/',
     description: metadata.description,
 };
 

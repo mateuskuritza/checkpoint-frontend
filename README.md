@@ -6,7 +6,16 @@ Para acessar o projeto em produção:
 
 [Backend](https://checkpoint-backend-production.up.railway.app/)
 
-**OBS**: O sistema pode ser acessado com alguns códigos já criados, "_#1234567_" e "_#7654321_"
+### Considerações iniciais
+
+-   O sistema pode ser acessado com alguns códigos já criados, "_#1234567_" e "_#7654321_";
+-   [Figma](https://www.figma.com/proto/4Ajs7agy7CbHov9WJGOete/Ilumeo---Teste-Fullstack---C%C3%B3pia-Kuritza?node-id=1-3&scaling=contain&page-id=0%3A1&starting-point-node-id=1%3A3&show-proto-sidebar=1) utilizado durante o desenvolvimento;
+-   Pensei em utilizar NestJS para o backend, acredito que teria facilitado/agilizado parte do desenvolvimento mas desisti pois não constava nenhuma informação no case sobre poder utilizar algo assim;
+-   Alguns pontos de melhorias/correções que observei enquanto desenvolvia:
+    -   Utilizar no frontend alguma lib de fetch (como SWR e react-query);
+    -   Refatorar a parte de http/..routes/controllers do backend, principalmente utilizando DTO's (com Zod ou Joi por ex.);
+    -   Criar "mappers" para as conexões entre app (use-cases), http (rotas) e databases;
+    -   Implementar novos testes para o use-case "GetEmployeeWorkhours" que cubram a parte do filtro de "today" e "history".
 
 ## Frontend
 
