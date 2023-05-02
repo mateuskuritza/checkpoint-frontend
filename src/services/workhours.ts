@@ -3,7 +3,6 @@ import { CookiesUtils } from '@/libs/cookies';
 
 class WorkHoursAPI {
     private apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/workhours`;
-    constructor() {}
 
     async getAll(): Promise<{ workhours: EmployeeWorkHours }> {
         const res = await fetch(`${this.apiUrl}/`, {
@@ -42,12 +41,13 @@ class WorkHoursAPI {
         }
     }
 
-    private basicConfig() {
+    private basicConfig(): RequestInit {
         return {
             headers: {
                 'Content-Type': 'application/json',
                 authorization: `Bearer ${CookiesUtils.get('jwt')}`,
             },
+            mode: 'no-cors',
         };
     }
 }

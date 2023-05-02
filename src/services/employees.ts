@@ -2,10 +2,11 @@ import { CookiesUtils } from '@/libs/cookies';
 
 class EmployeesAPI {
     private apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/employees`;
-    private basicConfig = {
+    private basicConfig: RequestInit = {
         headers: {
             'Content-Type': 'application/json',
         },
+        mode: 'no-cors',
     };
 
     constructor() {}

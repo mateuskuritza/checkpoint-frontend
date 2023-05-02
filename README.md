@@ -1,5 +1,11 @@
 Instruções para rodar o projeto localmente.
 
+Para acessar o projeto em produção:
+
+[Frontend](https://checkpoint-frontend-one.vercel.app/)
+
+[Backend](https://checkpoint-backend.onrender.com/)
+
 ---
 
 ## Frontend
