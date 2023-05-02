@@ -4,9 +4,9 @@ Para acessar o projeto em produção:
 
 [Frontend](https://checkpoint-frontend-one.vercel.app/)
 
-[Backend](https://checkpoint-backend.onrender.com/)
+[Backend](https://checkpoint-backend-production.up.railway.app/)
 
----
+**OBS**: O sistema pode ser acessado com alguns códigos já criados, "_#1234567_" e "_#7654321_"
 
 ## Frontend
 
@@ -69,9 +69,7 @@ npm install
 ```bash
 docker-compose up
 
-npx prisma generate
-
-npx prisma db push
+npm run database:setup
 
 npm run start:dev
 ```
