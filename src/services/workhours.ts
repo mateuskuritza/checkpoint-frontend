@@ -47,7 +47,6 @@ class WorkHoursAPI {
                 'Content-Type': 'application/json',
                 authorization: `Bearer ${CookiesUtils.get('jwt')}`,
             },
-            mode: 'no-cors',
         };
     }
 }

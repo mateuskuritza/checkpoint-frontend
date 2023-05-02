@@ -6,10 +6,7 @@ class EmployeesAPI {
         headers: {
             'Content-Type': 'application/json',
         },
-        mode: 'no-cors',
     };
-
-    constructor() {}
 
     async login(token: string): Promise<void> {
         const res = await fetch(`${this.apiUrl}/authenticate`, {
