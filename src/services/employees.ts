@@ -1,7 +1,7 @@
 import { CookiesUtils } from '@/libs/cookies';
 
-class UsersAPI {
-    private apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/users`;
+class EmployeesAPI {
+    private apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/employees`;
     private basicConfig = {
         headers: {
             'Content-Type': 'application/json',
@@ -16,7 +16,13 @@ class UsersAPI {
             method: 'POST',
             body: JSON.stringify({ token }),
         });
+
+        if (!res.ok) {
+            throw new Error(res.statusText);
+        }
+
         const { jwt } = await res.json();
+
         CookiesUtils.set('jwt', jwt, { path: '/' });
         return { jwt };
     }
@@ -39,4 +45,4 @@ class UsersAPI {
     }
 }
 
-export const usersAPI = new UsersAPI();
+export const employeesAPI = new EmployeesAPI();

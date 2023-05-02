@@ -1,8 +1,8 @@
-import { UserWorkHours } from '@/@types/workhour';
+import { EmployeeWorkHours } from '@/@types/workhour';
 import { Workhour } from './Workhour';
 
 interface WorkhoursListProps {
-    workhours: UserWorkHours;
+    workhours: EmployeeWorkHours;
 }
 
 export function WorkhoursList({ workhours }: WorkhoursListProps) {

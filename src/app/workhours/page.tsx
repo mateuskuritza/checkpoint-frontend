@@ -1,8 +1,8 @@
 'use client';
 
-import { UserWorkHours } from '@/@types/workhour';
+import { EmployeeWorkHours } from '@/@types/workhour';
+import { EmployeeInfos } from '@/app/workhours/components/EmployeeInfos';
 import { HourCounter } from '@/app/workhours/components/HourCounter';
-import { UserInfos } from '@/app/workhours/components/UserInfos';
 import { Button } from '@/components/Button';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
 import { workhoursAPI } from '@/services/workhours';
@@ -14,7 +14,7 @@ export default function Workhours() {
     // TODO: refactor this to use libs like react-query or swr
     const [loading, setLoading] = useState<boolean>(false);
 
-    const [workhours, setWorkhours] = useState<UserWorkHours>();
+    const [workhours, setWorkhours] = useState<EmployeeWorkHours>();
 
     useEffect(() => {
         setLoading(true);
@@ -78,7 +78,7 @@ export default function Workhours() {
                     <HourCounter startDate={workhours?.today?.start} endDate={workhours?.today?.end} />
                 </div>
 
-                {workhours && <UserInfos userToken={workhours.userToken} />}
+                {workhours && <EmployeeInfos employeeToken={workhours.employeeToken} />}
             </div>
 
             {workhours?.today?.start ? (

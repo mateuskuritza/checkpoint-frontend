@@ -1,24 +1,24 @@
 'use client';
 
-import { usersAPI } from '@/services/users';
+import { employeesAPI } from '@/services/employees';
 import { FormEvent, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { Button } from '../Button';
 import { Input } from '../Input';
 
 export function LoginForm() {
-    const [userToken, setUserToken] = useState<string>('');
+    const [employeeToken, setEmployeeToken] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const token = userToken.trim();
+        const token = employeeToken.trim();
         if (!token) return toast.error('Por favor, preencha um código de usuário válido.');
 
         setLoading(true);
 
-        usersAPI
+        employeesAPI
             .login(token)
             .then(() => {
                 window.location.href = '/workhours';
@@ -40,8 +40,8 @@ export function LoginForm() {
                 placeholder='Código do usuário'
                 example='4SXXFMf'
                 type='text'
-                value={userToken || ''}
-                onChange={(e) => setUserToken(e.target.value)}
+                value={employeeToken || ''}
+                onChange={(e) => setEmployeeToken(e.target.value)}
             />
             <Button textContent='Confirmar' disabled={loading} />
         </form>

@@ -1,7 +1,7 @@
 import { Optional } from './optional';
 
-export interface UserWorkHours {
-    userToken: string;
+export interface EmployeeWorkHours {
+    employeeToken: string;
     today: Optional<WorkHour, 'end'> | null;
     history: WorkHour[];
 }

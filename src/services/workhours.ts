@@ -1,11 +1,11 @@
-import { UserWorkHours } from '@/@types/workhour';
+import { EmployeeWorkHours } from '@/@types/workhour';
 import { CookiesUtils } from '@/libs/cookies';
 
 class WorkHoursAPI {
     private apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/workhours`;
     constructor() {}
 
-    async getAll(): Promise<{ workhours: UserWorkHours }> {
+    async getAll(): Promise<{ workhours: EmployeeWorkHours }> {
         const res = await fetch(`${this.apiUrl}/`, {
             ...this.basicConfig(),
             method: 'GET',
@@ -16,7 +16,7 @@ class WorkHoursAPI {
         };
     }
 
-    async startWork(): Promise<{ workhours: UserWorkHours }> {
+    async startWork(): Promise<{ workhours: EmployeeWorkHours }> {
         const res = await fetch(`${this.apiUrl}/start`, {
             ...this.basicConfig(),
             method: 'POST',
@@ -27,7 +27,7 @@ class WorkHoursAPI {
         };
     }
 
-    async endWork(): Promise<{ workhours: UserWorkHours }> {
+    async endWork(): Promise<{ workhours: EmployeeWorkHours }> {
         const res = await fetch(`${this.apiUrl}/end`, {
             ...this.basicConfig(),
             method: 'POST',
