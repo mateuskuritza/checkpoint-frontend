@@ -10,7 +10,7 @@ class EmployeesAPI {
 
     constructor() {}
 
-    async login(token: string): Promise<{ jwt: string }> {
+    async login(token: string): Promise<void> {
         const res = await fetch(`${this.apiUrl}/authenticate`, {
             ...this.basicConfig,
             method: 'POST',
@@ -21,10 +21,10 @@ class EmployeesAPI {
             throw new Error(res.statusText);
         }
 
-        const { jwt } = await res.json();
+        const { jwt, name } = await res.json();
 
+        window.localStorage.setItem('employee', JSON.stringify({ name, token }));
         CookiesUtils.set('jwt', jwt, { path: '/' });
-        return { jwt };
     }
 
     logout(): void {

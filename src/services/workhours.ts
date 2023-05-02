@@ -20,7 +20,7 @@ class WorkHoursAPI {
         };
     }
 
-    async startWork(): Promise<{ workhours: EmployeeWorkHours }> {
+    async startWork(): Promise<void> {
         const res = await fetch(`${this.apiUrl}/start`, {
             ...this.basicConfig(),
             method: 'POST',
@@ -29,13 +29,9 @@ class WorkHoursAPI {
         if (!res.ok) {
             throw new Error(res.statusText);
         }
-
-        return {
-            workhours: await res.json(),
-        };
     }
 
-    async endWork(): Promise<{ workhours: EmployeeWorkHours }> {
+    async endWork(): Promise<void> {
         const res = await fetch(`${this.apiUrl}/end`, {
             ...this.basicConfig(),
             method: 'POST',
@@ -44,17 +40,13 @@ class WorkHoursAPI {
         if (!res.ok) {
             throw new Error(res.statusText);
         }
-
-        return {
-            workhours: await res.json(),
-        };
     }
 
     private basicConfig() {
         return {
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${CookiesUtils.get('jwt')}`,
+                authorization: `Bearer ${CookiesUtils.get('jwt')}`,
             },
         };
     }

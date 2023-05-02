@@ -5,13 +5,12 @@ export class CookiesUtils {
         document.cookie = `${name}=${value};path=${options.path}`;
     }
 
-    static get(name: string): string | null {
+    static get(name: string): string | undefined {
         const cookie = document.cookie
             .split('; ')
             .find((cookie) => cookie.startsWith(name))
             ?.split('=')[1];
-        if (!cookie) return null;
-        return cookie.split('=')[1];
+        return cookie;
     }
 
     static remove(name: string): void {

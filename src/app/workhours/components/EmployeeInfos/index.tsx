@@ -1,10 +1,11 @@
+import { Employee } from '@/@types/employee';
 import { employeesAPI } from '@/services/employees';
 
 interface EmployeeInfosProps {
-    employeeToken: string;
+    employee: Employee;
 }
 
-export function EmployeeInfos({ employeeToken }: EmployeeInfosProps) {
+export function EmployeeInfos({ employee }: EmployeeInfosProps) {
     const handleLogout = () => {
         employeesAPI.logout();
         window.location.href = '/';
@@ -12,8 +13,8 @@ export function EmployeeInfos({ employeeToken }: EmployeeInfosProps) {
 
     return (
         <div className='grid place-items-end'>
-            <p className='font-bold text-xs text-whitesmoke'>{employeeToken}</p>
-            <p className='font-light text-xs text-silver text-opacity-70'>Usuário</p>
+            <p className='font-bold text-xs text-whitesmoke'>{employee.token}</p>
+            <p className='font-light text-xs text-silver text-opacity-70'>{employee.name}</p>
             <p
                 className='font-light text-xs text-silver text-opacity-70 cursor-pointer transition-all hover:brightness-200'
                 onClick={handleLogout}

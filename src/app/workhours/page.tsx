@@ -5,6 +5,7 @@ import { EmployeeInfos } from '@/app/workhours/components/EmployeeInfos';
 import { HourCounter } from '@/app/workhours/components/HourCounter';
 import { Button } from '@/components/Button';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
+import { useEmployee } from '@/hooks/useEmployee';
 import { workhoursAPI } from '@/services/workhours';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
@@ -14,11 +15,17 @@ export default function Workhours() {
     // TODO: refactor this to use libs like react-query or swr
     const [loading, setLoading] = useState<boolean>(false);
 
+    const { employee } = useEmployee();
+
     const [workhours, setWorkhours] = useState<EmployeeWorkHours>();
 
     useEffect(() => {
         setLoading(true);
 
+        loadWorkhours();
+    }, []);
+
+    const loadWorkhours = () => {
         workhoursAPI
             .getAll()
             .then(({ workhours }) => {
@@ -31,16 +38,16 @@ export default function Workhours() {
             .finally(() => {
                 setLoading(false);
             });
-    }, []);
+    };
 
     const handleStartWork = () => {
         setLoading(true);
 
         workhoursAPI
             .startWork()
-            .then(({ workhours }) => {
-                setWorkhours(workhours);
+            .then(() => {
                 toast.success('Ponto registrado com sucesso!');
+                loadWorkhours();
             })
             .catch((error) => {
                 console.error(error);
@@ -56,9 +63,9 @@ export default function Workhours() {
 
         workhoursAPI
             .endWork()
-            .then(({ workhours }) => {
-                setWorkhours(workhours);
+            .then(() => {
                 toast.success('Ponto registrado com sucesso!');
+                loadWorkhours();
             })
             .catch((error) => {
                 console.error(error);
@@ -75,13 +82,13 @@ export default function Workhours() {
                 <div className='flex flex-col gap-y-6'>
                     <h1 className='font-bold text-xs text-whitesmoke text-stroke'>Relógio de ponto</h1>
 
-                    <HourCounter startDate={workhours?.today?.start} endDate={workhours?.today?.end} />
+                    <HourCounter startDate={workhours?.today?.startDate} endDate={workhours?.today?.endDate} />
                 </div>
 
-                {workhours && <EmployeeInfos employeeToken={workhours.employeeToken} />}
+                {employee && <EmployeeInfos employee={employee} />}
             </div>
 
-            {workhours?.today?.start ? (
+            {workhours?.today?.startDate ? (
                 <Button
                     onClick={handleEndWork}
                     textContent='Hora de saída'
@@ -101,10 +108,14 @@ export default function Workhours() {
                 <p className='text-whitesmoke text-xs font-bold mr-auto'>Dias anteriores</p>
                 {workhours && <WorkhoursList workhours={workhours} />}
 
-                {loading ? (
-                    <LoadingSpinner />
-                ) : (
+                {loading && <LoadingSpinner />}
+
+                {!loading && !workhours && (
                     <p className='text-red text-opacity-75 mt-4'>Erro desconhecido ao carregar as informações :(</p>
+                )}
+
+                {workhours && workhours.history.length === 0 && (
+                    <p className='text-silver text-opacity-75 mt-4'>Histórico vazio</p>
                 )}
             </div>
         </main>
