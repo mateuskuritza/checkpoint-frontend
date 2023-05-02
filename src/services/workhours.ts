@@ -11,6 +11,10 @@ class WorkHoursAPI {
             method: 'GET',
         });
 
+        if (!res.ok) {
+            throw new Error(res.statusText);
+        }
+
         return {
             workhours: await res.json(),
         };
@@ -22,6 +26,10 @@ class WorkHoursAPI {
             method: 'POST',
         });
 
+        if (!res.ok) {
+            throw new Error(res.statusText);
+        }
+
         return {
             workhours: await res.json(),
         };
@@ -32,6 +40,10 @@ class WorkHoursAPI {
             ...this.basicConfig(),
             method: 'POST',
         });
+
+        if (!res.ok) {
+            throw new Error(res.statusText);
+        }
 
         return {
             workhours: await res.json(),

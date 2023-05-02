@@ -32,16 +32,17 @@ class EmployeesAPI {
     }
 
     async is_logged(jwt: string): Promise<boolean> {
-        try {
-            await fetch(`${this.apiUrl}/is_logged`, {
-                ...this.basicConfig,
-                method: 'POST',
-                body: JSON.stringify({ jwt }),
-            });
-            return true;
-        } catch {
+        const res = await fetch(`${this.apiUrl}/is_logged`, {
+            ...this.basicConfig,
+            method: 'POST',
+            body: JSON.stringify({ jwt }),
+        });
+
+        if (!res.ok) {
             return false;
         }
+
+        return true;
     }
 }
 
